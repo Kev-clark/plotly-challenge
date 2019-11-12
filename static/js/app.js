@@ -25,11 +25,11 @@ function buildMetadata(sample) {
 }
 
 async function buildCharts(sample) {
-const pieSelector = d3.select("pie");
-pieSelector.html("");
-const bubbleSelctor=d3.select("bubble");
-bubbleSelctor.html("");
-console.log(pieSelector.html)
+  const pieSelector = d3.select("pie");
+  pieSelector.html("");
+  const bubbleSelctor=d3.select("bubble");
+  bubbleSelctor.html("");
+  console.log(pieSelector.html)
   // @TODO: Use `d3.json` to fetch the sample data for the plots
   const data= await d3.json('/samples/'+sample)
     // @TODO: Build a Bubble Chart using the sample data
@@ -44,10 +44,11 @@ console.log(pieSelector.html)
     type: "scatter",
     mode: "markers",
     marker:{
-      size:sample_values, 
-        }, 
+      size:sample_values,
+      color: otu_labels
+      }, 
+   
     text:otu_labels,
-    
     x: otu_ids,
     y: sample_values,
     line: {
@@ -80,6 +81,7 @@ console.log(pieSelector.html)
     const pieTrace={
       labels:slicedDataIds,
       values:slicedDataValues,
+      text:slicedDataLabels,
       type:'pie'
     };
     const piedata=[pieTrace];
